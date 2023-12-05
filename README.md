@@ -95,8 +95,8 @@ This document serves as a checklist for various issues and tasks that need atten
   - Description: generate feature in specific path
 
 - [ ] **Issue 4: remove _feature from generation method **
-  - Description:with every folder of folder generated you must add _feature in end of folder of feature you generate
-- [ ] **Issue 5: refacto mothods of generate **
+  - Description: with every folder of folder generated you must add _feature in end of folder of feature you generate
+- [ ] **Issue 5: refactor mothods of generate **
 
 - [ ] **Issue 6: split methods of generator**
   - Description: split methodsto make us able to use it as single generator of specific layer
