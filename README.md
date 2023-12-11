@@ -11,17 +11,17 @@ Before using this script, make sure you have the following installed:
 
 ## Usage
 
- 1 - Clone or download the repository.
+1 - Clone or download the repository.
 
- 2 - Open a terminal and navigate to the project directory.
+2 - Open a terminal and navigate to the project directory.
 
- 3 - Run the following command to execute the code generator script:
+3 - Run the following command to execute the code generator script:
 
 ```bash
 flutter pub run generator:generate <featureName>
 ```
 
- **Replace <featureName> with the desired name for your feature/module.**
+**Replace <featureName> with the desired name for your feature/module.**
 
 4 - The script will generate the necessary folder structure and template files for the data, domain, and presentation layers.
 
