@@ -85,8 +85,8 @@ This document serves as a checklist for various issues and tasks that need atten
 
 ## Checkpoints
 
-- [ ] **Issue 1: Name of feature**
-  - Description: when i want to slove name of files and class that generate from generator like (auth_feature, auth feature, auth user feature )
+- [x] **Issue 1: Name of feature**
+  - Description: when i want to solve name of files and class that generate from generator like (auth_feature, auth feature, auth user feature )
 
 - [ ] **Issue 2: refactor stubs of generator/lib/module **
   - Description: stubs have bad naming in strings
@@ -96,10 +96,10 @@ This document serves as a checklist for various issues and tasks that need atten
 
 - [ ] **Issue 4: remove _feature from generation method **
   - Description: with every folder of folder generated you must add _feature in end of folder of feature you generate
-- [ ] **Issue 5: refactor mothods of generate **
+- [ ] **Issue 5: refactor methods of generate **
 
 - [ ] **Issue 6: split methods of generator**
-  - Description: split methodsto make us able to use it as single generator of specific layer
+  - Description: split methods make us able to use it as single generator of specific layer
 
 ## Additional Notes
 

@@ -14,6 +14,7 @@ import 'package:generator/module/presentation/logic/cubit.dart'
 import 'package:generator/module/presentation/logic/states.dart'
     as generator_state;
 import 'package:generator/module/presentation/screen.dart' as generator_screen;
+import 'package:generator/src/utilities/string_extension.dart';
 import 'utilities/utils.dart';
 
 String moduleName = "";
@@ -42,7 +43,7 @@ Future<void> generate(List<String> args) async {
 
   moduleName = args.first;
   modulePath =
-      "lib/features/${Utils.lcFirst(moduleName, preserveAfter: true)}_feature";
+      "lib/features/${moduleName.formatFeatureName()}";
 
   Utils.makeDir(modulePath);
 
@@ -57,7 +58,7 @@ Future<void> generate(List<String> args) async {
 /// Generate ModuleController
 Future<void> generateDataLayer() async {
   dataFolderPath =
-      "lib/features/${Utils.lcFirst(moduleName, preserveAfter: true)}_feature/data";
+      "lib/features/${moduleName.formatFeatureName()}/data";
   dataSourcePath = "$dataFolderPath/data_source";
   repositoryInterfacePath = "$dataFolderPath/repository";
 
@@ -69,31 +70,29 @@ Future<void> generateDataLayer() async {
 
   ///generate data source file in data folder
   String dataSourceFile = generator_data_source.stub
-      .replaceAll(
-          '{ModuleName}', Utils.lcFirst(moduleName, preserveAfter: true))
-      .replaceAll('{Module}', Utils.ucFirst(moduleName, preserveAfter: true));
+      .replaceAll('{ModuleName}', moduleName.capitalizeFirstLetter(preserveAfter: true))
+      .replaceAll('{Module}', moduleName.capitalizeFirstLetter(preserveAfter: true));
   Utils.writeFile(
-      "$dataSourcePath/${Utils.lcFirst(moduleName, preserveAfter: true)}_remote_data_source.dart",
+      "$dataSourcePath/${moduleName.capitalizeFirstLetter(preserveAfter: true)}_remote_data_source.dart",
       dataSourceFile);
   Utils.makeDir(repositoryInterfacePath);
   String repositoryFile = generator_repository.stub
-      .replaceAll(
-          '{ModuleName}', Utils.lcFirst(moduleName, preserveAfter: true))
-      .replaceAll('{Module}', Utils.ucFirst(moduleName, preserveAfter: true));
+      .replaceAll('{ModuleName}', moduleName.capitalizeFirstLetter(preserveAfter: true))
+      .replaceAll('{Module}', moduleName.capitalizeFirstLetter(preserveAfter: true));
 
   /// Write File
 
   Utils.writeFile(
-      "$repositoryInterfacePath/${Utils.lcFirst(moduleName, preserveAfter: true)}_repository_impl.dart",
+      "$repositoryInterfacePath/${moduleName.capitalizeFirstLetter(preserveAfter: true)}_repository_impl.dart",
       repositoryFile);
-  Utils.debugPrint(green('"$dataFolderPath" data layer generated successfully!'));
-
+  Utils.debugPrint(
+      green('"$dataFolderPath" data layer generated successfully!'));
 }
 
 /// Generate domain layer
 Future<void> generateDomainLayer() async {
   domainFolderPath =
-      "lib/features/${Utils.lcFirst(moduleName, preserveAfter: true)}_feature/domain";
+      "lib/features/${moduleName.formatFeatureName()}/domain";
   modelPath = "$domainFolderPath/model";
   repositoryInterfacePath = "$domainFolderPath/repository";
   useCasePath = "$domainFolderPath/use_cases";
@@ -104,42 +103,39 @@ Future<void> generateDomainLayer() async {
   ///generate repo interface folder
   Utils.makeDir(repositoryInterfacePath);
   String repoInterfaceFile = generator_repository_interface.stub
-      .replaceAll(
-          '{ModuleName}', Utils.lcFirst(moduleName, preserveAfter: true))
-      .replaceAll('{Module}', Utils.ucFirst(moduleName, preserveAfter: true));
+      .replaceAll('{ModuleName}', moduleName.capitalizeFirstLetter(preserveAfter: true))
+      .replaceAll('{Module}', moduleName.capitalizeFirstLetter(preserveAfter: true));
   Utils.writeFile(
-      "$repositoryInterfacePath/${Utils.lcFirst(moduleName, preserveAfter: true)}_repository_interface.dart",
+      "$repositoryInterfacePath/${moduleName.capitalizeFirstLetter(preserveAfter: true)}_repository_interface.dart",
       repoInterfaceFile);
 
   ///generate  model folder
   Utils.makeDir(modelPath);
   String modelFile = generator_model.stub
-      .replaceAll(
-          '{ModuleName}', Utils.lcFirst(moduleName, preserveAfter: true))
-      .replaceAll('{Module}', Utils.ucFirst(moduleName, preserveAfter: true));
+      .replaceAll('{ModuleName}', moduleName.capitalizeFirstLetter(preserveAfter: true))
+      .replaceAll('{Module}', moduleName.capitalizeFirstLetter(preserveAfter: true));
   Utils.writeFile(
-      "$modelPath/${Utils.lcFirst(moduleName, preserveAfter: true)}_model.dart",
+      "$modelPath/${moduleName.capitalizeFirstLetter(preserveAfter: true)}_model.dart",
       modelFile);
 
   ///generate  use case folder
 
   Utils.makeDir(useCasePath);
   String useCaseFile = generator_use_case.stub
-      .replaceAll(
-          '{ModuleName}', Utils.lcFirst(moduleName, preserveAfter: true))
-      .replaceAll('{Module}', Utils.ucFirst(moduleName, preserveAfter: true));
+      .replaceAll('{ModuleName}', moduleName.capitalizeFirstLetter(preserveAfter: true))
+      .replaceAll('{Module}', moduleName.capitalizeFirstLetter(preserveAfter: true));
   Utils.writeFile(
-      "$useCasePath/${Utils.lcFirst(moduleName, preserveAfter: true)}_use_case.dart",
+      "$useCasePath/${moduleName.capitalizeFirstLetter(preserveAfter: true)}_use_case.dart",
       useCaseFile);
 
   /// Show Success message
-  Utils.debugPrint(green('"$domainFolderPath" domain layer generated successfully!'));
-
+  Utils.debugPrint(
+      green('"$domainFolderPath" domain layer generated successfully!'));
 }
 
 Future<void> generatePresentationLayer() async {
   presentationFolderPath =
-      "lib/features/${Utils.lcFirst(moduleName, preserveAfter: true)}_feature/presentation";
+      "lib/features/${moduleName.formatFeatureName()}/presentation";
   logicPath = "$presentationFolderPath/logic";
   screenPath = presentationFolderPath;
 
@@ -149,59 +145,38 @@ Future<void> generatePresentationLayer() async {
   ///generate repo interface folder
   Utils.makeDir(logicPath);
   String cubitFile = generator_cubit.stub
-      .replaceAll(
-          '{ModuleName}', Utils.lcFirst(moduleName, preserveAfter: true))
-      .replaceAll('{Module}', Utils.ucFirst(moduleName, preserveAfter: true));
+      .replaceAll('{ModuleName}', moduleName.capitalizeFirstLetter(preserveAfter: true))
+      .replaceAll('{Module}', moduleName.capitalizeFirstLetter(preserveAfter: true));
   Utils.writeFile(
-      "$logicPath/${Utils.lcFirst(moduleName, preserveAfter: true)}_cubit.dart",
+      "$logicPath/${moduleName.capitalizeFirstLetter(preserveAfter: true)}_cubit.dart",
       cubitFile);
   String stateFile = generator_state.stub
-      .replaceAll(
-          '{ModuleName}', Utils.lcFirst(moduleName, preserveAfter: true))
-      .replaceAll('{Module}', Utils.ucFirst(moduleName, preserveAfter: true));
+      .replaceAll('{ModuleName}', moduleName.capitalizeFirstLetter(preserveAfter: true))
+      .replaceAll('{Module}', moduleName.capitalizeFirstLetter(preserveAfter: true));
   Utils.writeFile(
-      "$logicPath/${Utils.lcFirst(moduleName, preserveAfter: true)}_states.dart",
+      "$logicPath/${moduleName.capitalizeFirstLetter(preserveAfter: true)}_states.dart",
       stateFile);
 
   ///generate  model folder
   String screenFile = generator_screen.stub
-      .replaceAll(
-          '{ModuleName}', Utils.lcFirst(moduleName, preserveAfter: true))
-      .replaceAll('{Module}', Utils.ucFirst(moduleName, preserveAfter: true));
+      .replaceAll('{ModuleName}', moduleName.capitalizeFirstLetter(preserveAfter: true))
+      .replaceAll('{Module}', moduleName.capitalizeFirstLetter(preserveAfter: true));
   Utils.writeFile(
-      "$presentationFolderPath/${Utils.lcFirst(moduleName, preserveAfter: true)}_screen.dart",
+      "$presentationFolderPath/${moduleName.capitalizeFirstLetter(preserveAfter: true)}_screen.dart",
       screenFile);
-    /// Show Success message
+
+  /// Show Success message
   Utils.debugPrint(green(
       '"$presentationFolderPath" presentation layer generated successfully!'));
-
 }
 
 bool _validateArgs(List<String> args) {
   /// Check if there are any args
   if (args.isEmpty) {
     Utils.debugPrint(red(
-          'Please provide feature name \nExample "flutter pub run generator:generate featureName '));
+        'Please provide feature name \nExample "flutter pub run generator:generate featureName '));
 
     return false;
   }
-
-  /// Get the module name
-  // moduleName = args.where((element) => element.contains('--on=')).isNotEmpty
-  //     ? args.where((element) => element.contains('--on=')).first
-  //     : "";
-  //
-  // /// Check if the module name is provided or not.
-  // if (moduleName == "") {
-  //   debugPrint(red(
-  //       'Please provide module name to generate the controller\nExample [--on=<module_name>]'));
-  //   return false;
-  // }
-  // moduleName = moduleName.replaceAll('--on=', '');
-  // modulePath = "lib/${Utils.ucFirst(moduleName, preserveAfter: true)}";
-  // if (!exists(modulePath)) {
-  //   debugPrint(red('The module with name "$moduleName" does not exist.'));
-  //   return false;
-  // }
   return true;
 }
