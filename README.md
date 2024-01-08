@@ -11,17 +11,17 @@ Before using this script, make sure you have the following installed:
 
 ## Usage
 
- 1 - Clone or download the repository.
+1 - Clone or download the repository.
 
- 2 - Open a terminal and navigate to the project directory.
+2 - Open a terminal and navigate to the project directory.
 
- 3 - Run the following command to execute the code generator script:
+3 - Run the following command to execute the code generator script:
 
 ```bash
 flutter pub run generator:generate <featureName>
 ```
 
- **Replace <featureName> with the desired name for your feature/module.**
+**Replace <featureName> with the desired name for your feature/module.**
 
 4 - The script will generate the necessary folder structure and template files for the data, domain, and presentation layers.
 
@@ -85,8 +85,8 @@ This document serves as a checklist for various issues and tasks that need atten
 
 ## Checkpoints
 
-- [ ] **Issue 1: Name of feature**
-  - Description: when i want to slove name of files and class that generate from generator like (auth_feature, auth feature, auth user feature )
+- [x] **Issue 1: Name of feature**
+  - Description: when i want to solve name of files and class that generate from generator like (auth_feature, auth feature, auth user feature )
 
 - [ ] **Issue 2: refactor stubs of generator/lib/module **
   - Description: stubs have bad naming in strings
@@ -96,10 +96,10 @@ This document serves as a checklist for various issues and tasks that need atten
 
 - [ ] **Issue 4: remove _feature from generation method **
   - Description: with every folder of folder generated you must add _feature in end of folder of feature you generate
-- [ ] **Issue 5: refactor mothods of generate **
+- [ ] **Issue 5: refactor methods of generate **
 
 - [ ] **Issue 6: split methods of generator**
-  - Description: split methodsto make us able to use it as single generator of specific layer
+  - Description: split methods make us able to use it as single generator of specific layer
 
 ## Additional Notes
 

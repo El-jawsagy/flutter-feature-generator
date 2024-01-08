@@ -1,6 +1,7 @@
 import 'package:dcli/dcli.dart';
 import 'package:generator/module/data/data_source/remote_data_source.dart'
     as data_source_generator;
+import 'package:generator/src/utilities/string_extension.dart';
 
 import '../../utilities/utils.dart';
 
@@ -17,7 +18,7 @@ Future<void> generate(List<String> args) async {
   dataSourceName = args.first;
 
   dataSourcePath =
-      "lib/${Utils.ucFirst(moduleName, preserveAfter: true)}/data/data_source";
+      "lib/${moduleName.capitalizeFirstLetter(preserveAfter: true)}/data/data_source";
 
   /// Generate Controller
   await generateDataSource();
@@ -29,16 +30,16 @@ Future<void> generateDataSource() async {
   Utils.makeDir(dataSourcePath);
 
   String controllerFile = data_source_generator.stub.replaceAll(
-      '{DATASOURCE_NAME}', Utils.ucFirst(dataSourceName, preserveAfter: true));
+      '{DATASOURCE_NAME}', dataSourceName.capitalizeFirstLetter(preserveAfter: true));
 
   /// Write File
   Utils.writeFile(
-      "$dataSourcePath/${Utils.ucFirst(dataSourceName, preserveAfter: true)}_remote_data_source.dart",
+      "$dataSourcePath/${dataSourceName.capitalizeFirstLetter(preserveAfter: true)}_remote_data_source.dart",
       controllerFile);
 
   /// Show Success message
   Utils.debugPrint(green(
-      '"$dataSourcePath/${Utils.ucFirst(dataSourceName, preserveAfter: true)}_remote_data_source.dart" generated successfully.'));
+      '"$dataSourcePath/${dataSourceName.capitalizeFirstLetter(preserveAfter: true)}_remote_data_source.dart" generated successfully.'));
 }
 
 bool _validateArgs(List<String> args) {
@@ -52,7 +53,7 @@ bool _validateArgs(List<String> args) {
 
   /// Get the module name
   moduleName = args.where((element) => element.contains('--on=')).isNotEmpty
-      ? args.where((element) => element.contains('--on=')).first
+      ? args.where((element) => element.contains('--on=')).first.extractModuleName()
       : "";
 
   /// Check if the module name is provided or not.
@@ -62,11 +63,8 @@ bool _validateArgs(List<String> args) {
     return false;
   }
 
-  /// Assign module name
-  moduleName = moduleName.replaceAll('--on=', '');
-
   /// Assign module path
-  modulePath = "lib/${Utils.ucFirst(moduleName, preserveAfter: true)}";
+  modulePath = "lib/${moduleName.capitalizeFirstLetter(preserveAfter: true)}";
 
   /// Check if the module exists or not
   if (!exists(modulePath)) {
