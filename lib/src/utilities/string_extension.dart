@@ -80,7 +80,7 @@ extension StringExtensions on String {
 
   /// Extracts module name by replacing '--on=' in the string.
   String extractModuleName() {
-    return this.replaceAll('--on=', '');
+    return this.split('--on=').last;
   }
 
   /// Converts the first letter of the string to lowercase.
