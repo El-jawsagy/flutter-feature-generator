@@ -174,7 +174,7 @@ bool _validateArgs(List<String> args) {
   /// Check if there are any args
   if (args.isEmpty) {
     Utils.debugPrint(red(
-        'Please provide feature name \nExample "flutter pub run generator:generate featureName '));
+        'Please provide feature name \nExample "flutter pub run generator:generate feature Name '));
 
     return false;
   }
